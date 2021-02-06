@@ -1,5 +1,5 @@
-resource "aws_s3_bucket" "example" {
-    bucket = "example"
+resource "aws_s3_bucket" "sample-crl-ag" {
+    bucket = "sample-crl-ag"
 }
 
 data "aws_iam_policy_document" "acmpca_bucket_access" {
@@ -12,8 +12,8 @@ data "aws_iam_policy_document" "acmpca_bucket_access" {
         ]
 
         resources = [
-        aws_s3_bucket.example.arn,
-        "${aws_s3_bucket.example.arn}/*",
+        aws_s3_bucket.sample-crl-ag.arn,
+        "${aws_s3_bucket.sample-crl-ag.arn}/*",
         ]
 
         principals {
@@ -23,8 +23,8 @@ data "aws_iam_policy_document" "acmpca_bucket_access" {
     }
 }
 
-resource "aws_s3_bucket_policy" "example" {
-    bucket = aws_s3_bucket.example.id
+resource "aws_s3_bucket_policy" "sample-crl-ag" {
+    bucket = aws_s3_bucket.sample-crl-ag.id
     policy = data.aws_iam_policy_document.acmpca_bucket_access.json
 }
 
@@ -45,11 +45,11 @@ resource "aws_acmpca_certificate_authority" "example-root" {
         custom_cname       = "crl.example.com"
         enabled            = true
         expiration_in_days = 7
-        s3_bucket_name     = aws_s3_bucket.example.id
+        s3_bucket_name     = aws_s3_bucket.sample-crl-ag.id
         }
     }
 
     type = "ROOT"
 
-    depends_on = [aws_s3_bucket_policy.example]
+    depends_on = [aws_s3_bucket_policy.sample-crl-ag]
 }
