@@ -23,12 +23,12 @@ data "aws_iam_policy_document" "acmpca_bucket_access" {
     }
 }
 
-resource "aws_s3_bucket_policy" "example-root" {
+resource "aws_s3_bucket_policy" "example" {
     bucket = aws_s3_bucket.example.id
     policy = data.aws_iam_policy_document.acmpca_bucket_access.json
 }
 
-resource "aws_acmpca_certificate_authority" "example" {
+resource "aws_acmpca_certificate_authority" "example-root" {
     certificate_authority_configuration {
         key_algorithm     = "RSA_4096"
         signing_algorithm = "SHA512WITHRSA"
