@@ -32,7 +32,7 @@ resource "aws_s3_bucket_policy" "sample-crl-ag" {
     policy = data.aws_iam_policy_document.acmpca_bucket_access.json
 }
 
-data "aws_iam_policy_document" "acmpca_bucket_access" {
+data "aws_iam_policy_document" "acmpca_bucket_sub_access" {
     statement {
         actions = [
         "s3:GetBucketAcl",
