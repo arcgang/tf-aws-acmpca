@@ -55,7 +55,7 @@ data "aws_iam_policy_document" "acmpca_bucket_sub_access" {
 
 resource "aws_s3_bucket_policy" "sample-crl-ag-sub" {
     bucket = aws_s3_bucket.sample-crl-ag-sub.id
-    policy = data.aws_iam_policy_document.acmpca_bucket_access.json
+    policy = data.aws_iam_policy_document.acmpca_bucket_sub_access.json
 }
 
 
