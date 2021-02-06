@@ -106,11 +106,11 @@ resource "aws_acmpca_certificate_authority" "example-subordinate" {
         custom_cname       = "crl.sub.example.com"
         enabled            = true
         expiration_in_days = 7
-        s3_bucket_name     = aws_s3_bucket.sample-crl-ag.id
+        s3_bucket_name     = aws_s3_bucket.sample-crl-ag-sub.id
         }
     }
 
     type = "SUBORDINATE"
 
-    depends_on = [aws_s3_bucket_policy.sample-crl-ag]
+    depends_on = [aws_s3_bucket_policy.sample-crl-ag-sub]
 }
